@@ -4,25 +4,31 @@
       <h1>
           <?php
               if ( is_day() ) :
-                  printf( __( 'Daily Archives: %s', 'twentyfourteen' ), get_the_date() );
+                  printf( __( 'Daily Archives: %s', 'wp-mxit' ), get_the_date() );
 
               elseif ( is_month() ) :
-                  printf( __( 'Monthly Archives: %s', 'twentyfourteen' ), get_the_date( _x( 'F Y', 'monthly archives date format', 'twentyfourteen' ) ) );
+                  printf( __( 'Monthly Archives: %s', 'wp-mxit' ), get_the_date( _x( 'F Y', 'monthly archives date format', 'twentyfourteen' ) ) );
 
               elseif ( is_year() ) :
-                  printf( __( 'Yearly Archives: %s', 'twentyfourteen' ), get_the_date( _x( 'Y', 'yearly archives date format', 'twentyfourteen' ) ) );
+                  printf( __( 'Yearly Archives: %s', 'wp-mxit' ), get_the_date( _x( 'Y', 'yearly archives date format', 'wp-mxit' ) ) );
 
               elseif ( is_category() ) :
-                  single_cat_title('Browsing ');
-                  
+                  single_cat_title('');
+                    
               else :
-                  _e( 'Archives', 'twentyfourteen' );
+                  _e( 'Posts', 'wp-mxit' );
 
               endif;
           ?>
       </h1>
       --------------
   <?php
+
+          $queried_object = get_queried_object();
+          $cat_ID = $queried_object->cat_ID ;
+
+          query_posts( array( 'cat' => $cat_ID, 'orderby' => 'date', 'order' => 'ASC') );
+
           // Start the Loop.
           while ( have_posts() ) : the_post();
 
@@ -40,12 +46,11 @@
 
 
           endwhile;
-          // Previous/next page navigation.
-          //twentyfourteen_paging_nav();
+
+          wp_reset_query();
 
       else :
           // If no content, include the "No posts found" template.
-          get_template_part( 'content', 'none' );
 
   endif;
   get_mxit_nav();

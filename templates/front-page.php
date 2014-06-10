@@ -4,8 +4,6 @@
 
   get_mxit_nav();
 
-  echo "front-page";
-
   /**
   // Start the Loop.
   while ( have_posts() ) : the_post();

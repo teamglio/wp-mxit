@@ -13,6 +13,7 @@
 /**
 	* Analytics
 	* Referral link
+  * Expose query_posts args through settings
 */
 
 //Mxit Header

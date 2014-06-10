@@ -3,9 +3,7 @@
   echo '<h1>' . get_bloginfo() . '</h1>';
 
   get_mxit_nav();
-
-  echo "home.php";
-
+  
   /**
   // Start the Loop.
   while ( have_posts() ) : the_post();
