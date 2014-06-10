@@ -14,5 +14,6 @@
         //    comments_template();
         //}
     endwhile;
+    get_mxit_nav();
     get_mxit_footer();
 ?>
