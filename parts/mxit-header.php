@@ -1,4 +1,7 @@
+<h1><?php bloginfo('name'); ?></h1>
+
 <?php
+
 $defaults = array(
     'theme_location'  => 'mxit_header_nav',
     'menu'            => '',

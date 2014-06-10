@@ -24,8 +24,11 @@ if (is_mxit()) {
   add_filter( 'page_template', 'wp_mxit_page_template' );
   add_filter( 'single_template', 'wp_mxit_single_template' );
   add_filter( 'archive_template', 'wp_mxit_archive_template' );
-  add_filter( 'home_template', 'wp_mxit_home_template' );
   add_filter( 'category_template', 'wp_mxit_category_template' );
+  add_filter( 'home_template', 'wp_mxit_home_template' );
+  add_filter( 'home_template', 'wp_mxit_home_page_template' );
+  add_filter( 'home_template', 'wp_mxit_home_blog_template' );
+
 }
 // REGISTER GETS
 function get_mxit_header() {
@@ -38,6 +41,7 @@ function get_mxit_footer() {
     $mxit_footer = plugin_dir_path( __FILE__ ) . $footer_file;
     return include $mxit_footer;
 }
+
 //Templates
 function wp_mxit_page_template( $page_template ) {
     global $post;
@@ -56,6 +60,7 @@ function wp_mxit_single_template($single_template) {
     }
     return $single_template;
 }
+
 function wp_mxit_archive_template( $archive_template ) {
     global $post;
 
@@ -64,6 +69,7 @@ function wp_mxit_archive_template( $archive_template ) {
     }
     return $archive_template;
 }
+
 function wp_mxit_category_template( $taxonomy_template ) {
     global $post;
 
@@ -72,14 +78,26 @@ function wp_mxit_category_template( $taxonomy_template ) {
     }
     return $category_template;
 }
-function wp_mxit_home_template( $home_template ) {
-    global $post;
 
-    if ( is_home()|| is_front_page() ) {
-        $home_template = dirname( __FILE__ ) . '/templates/home.php';
+# Static home page
+function wp_mxit_home_page_template( $home_template ) {
+    global $post;
+    if ( is_front_page() ) {
+        $home_template = dirname( __FILE__ ) . '/templates/foo.php';
     }
     return $home_template;
 }
+
+# Blog home page
+function wp_mxit_home_blog_template( $home_template ) {
+    global $post;
+    if ( is_home() ) {
+        $home_template = dirname( __FILE__ ) . '/templates/archive.php';
+    }
+    return $home_template;
+}
+
+
 //REGISTER NAVS
 register_nav_menus( array(
     'mxit_header_nav' => 'Mxit Top Navigation',
