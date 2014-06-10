@@ -1,3 +1,8 @@
+<div>
+  <mxit:advert auid="<?php echo get_option('wp_mxit_auid'); ?>">
+  </mxit:advert>
+</div>
+
 <h1><?php bloginfo('name'); ?></h1>
 
 <?php
